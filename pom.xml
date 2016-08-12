@@ -1,0 +1,72 @@
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>swallow</groupId>
+    <artifactId>titans</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <modules>
+        <module>titans-hacker</module>
+        <module>titans-commons</module>
+    </modules>
+    <packaging>pom</packaging>
+
+
+    <!--<scm>
+        <connection>scm:git:https://github.com/weibocom/motan.git</connection>
+        <url>https://github.com/weibocom/motan</url>
+        <developerConnection>scm:git:https://github.com/weibocom/motan.git</developerConnection>
+    </scm>-->
+
+    <name>titans</name>
+    <description>build a titan</description>
+    <!--<url>https://github.com/weibocom/motan</url>-->
+
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <java.source.jdk>1.8</java.source.jdk>
+        <spring.version>4.2.4.RELEASE</spring.version>
+        <guva.version>18.0</guva.version>
+
+    </properties>
+
+    <dependencies>
+        <!-- google guva -->
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <version>${guva.version}</version>
+        </dependency>
+
+        <!--spring -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-beans</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-web</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>3.8.1</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+    <developers>
+        <developer>
+            <name>vinfai</name>
+            <email>vinfai85@gmail.com</email>
+            <organization>single</organization>
+        </developer>
+    </developers>
+</project>
