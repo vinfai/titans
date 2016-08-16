@@ -1,4 +1,4 @@
-package com.titans.hacker.jvm;
+package com.titans.octopus.jvm;
 
 /**
  * 对象GC 过程中GC 自我拯救!<br/>
@@ -17,7 +17,7 @@ public class FinalizeEscapeGC {
     @Override
     protected void finalize() throws Throwable {
         super.finalize();
-        System.out.println("finalize mehtod executed!");
+        System.out.println("finalize method executed!");
         //重新绑定到GC ROOT
         FinalizeEscapeGC.SAVE_HOOK = this;
     }
