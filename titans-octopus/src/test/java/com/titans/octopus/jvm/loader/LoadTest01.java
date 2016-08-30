@@ -12,6 +12,8 @@ public class LoadTest01 {
 
         B b = new A();
         b.test();
+        int i = 331835450;
+        System.out.println(i);
     }
 
 }
