@@ -8,6 +8,7 @@
         <module>titans-octopus</module>
         <module>titans-commons</module>
         <module>titans-bigdata</module>
+        <module>titans-weblab</module>
     </modules>
     <packaging>pom</packaging>
 
