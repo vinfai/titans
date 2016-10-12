@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+            http://www.springframework.org/schema/context
+			http://www.springframework.org/schema/context/spring-context-4.0.xsd">
+    <!--springMVC相关配置-->
+    <!-- component scan springMVC action-->
+    <context:component-scan base-package="com.titans.web.action" />
+
+    <!-- spring handler、mapping 配置-->
+    <bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter">
+        <!--<property name="webBindingInitializer">
+            <bean class="com.xxx.web.support.GBBindingInitializer"/>
+        </property>-->
+        <property name="messageConverters">
+            <list>
+                <bean class="org.springframework.http.converter.StringHttpMessageConverter">
+                    <constructor-arg value="utf-8"/>
+                    <property name="writeAcceptCharset" value="false"/>
+                </bean>
+            </list>
+        </property>
+    </bean>
+
+  <bean id="handlerMapping" class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping"/>
+    <!--
+    <bean id="handlerExceptionResolver"
+          class="com.titans.web.support.PageExceptionResolver">
+        <property name="warnLogCategory" value="pageError" />
+        <property name="defaultStatusCode" value="404" />
+        <property name="defaultErrorView" value="404.vm" />
+    </bean>
+    <bean id="gewaMultipartResolver"
+          class="com.gewara.web.support.GewaMultipartResolver">
+        <property name="maxUploadSize" value="18388608" />&lt;!&ndash; 8M &ndash;&gt;
+        <property name="defaultEncoding" value="UTF-8"/>
+        <property name="maxInMemorySize" value="40960"/>
+    </bean>-->
+    <!--视图配置-->
+    <bean id="velocityConfig" class="org.springframework.web.servlet.view.velocity.VelocityConfigurer">
+        <property name="resourceLoaderPath" value="/"/><!--context-support.jar-->
+        <property name="configLocation" value="classpath:velocity.properties"/>
+    </bean>
+    <bean id="velocityViewResolver" class="org.springframework.web.servlet.view.velocity.VelocityViewResolver">
+        <property name="prefix" value="/WEB-INF/pages/"/>
+        <property name="viewNames" value="*.vm"/>
+        <property name="contentType" value="text/html;charset=UTF-8"/>
+       <!-- <property name="viewClass" value="com.xxx.web.support.GewaVelocityView" />-->
+    </bean>
+
+    <bean id="jspViewResolver"  class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="order" value="3"/>
+        <property name="requestContextAttribute" value="rc" />
+        <property name="viewClass" value="org.springframework.web.servlet.view.JstlView" />
+        <property name="prefix" value="/WEB-INF/pages/" />
+        <property name="viewNames" value="*.jsp,*.xhtml,*.html,*.shtml"/>
+    </bean>
+</beans>
