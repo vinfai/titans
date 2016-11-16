@@ -1,5 +1,8 @@
 package com.titans.web.listener;
 
+import org.springframework.scheduling.annotation.Async;
+import org.springframework.web.servlet.AsyncHandlerInterceptor;
+
 import javax.servlet.AsyncEvent;
 import javax.servlet.AsyncListener;
 import javax.servlet.ServletResponse;
@@ -10,6 +13,7 @@ import java.io.IOException;
  * @author vinfai
  * @since 2016/10/9
  */
+
 public class MyAsyncListener implements AsyncListener{
 
     @Override

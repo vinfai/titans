@@ -11,5 +11,15 @@
     <packaging>pom</packaging>
     <artifactId>titans-octopus</artifactId>
     <description>八爪鱼项目：基础、算法、jvm、多线程等</description>
-
+    <dependencies>
+        <dependency>
+            <groupId>io.netty</groupId>
+            <artifactId>netty</artifactId>
+            <version>3.9.5.Final</version>
+        </dependency>
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+        </dependency>
+    </dependencies>
 </project>
