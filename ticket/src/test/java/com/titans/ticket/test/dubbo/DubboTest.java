@@ -1,8 +1,10 @@
 package com.titans.ticket.test.dubbo;
 
+import com.alibaba.dubbo.common.extension.SPI;
 import com.alibaba.dubbo.config.ApplicationConfig;
 import com.alibaba.dubbo.config.ReferenceConfig;
 import com.alibaba.dubbo.config.RegistryConfig;
+import com.titans.api.vo.ResultCode;
 import com.titans.avatar.api.service.UserService;
 import com.titans.avatar.api.vo.UserVO;
 
@@ -28,8 +30,15 @@ public class DubboTest {
         referenceConfig.setVersion("0.1.0");
         referenceConfig.setTimeout(6000);
         UserService service = referenceConfig.get();
-        UserVO userVO = service.getUserById(1L);
-        System.out.println(userVO.getId()+";"+userVO.getNickName());
+        ResultCode<UserVO> code = service.getUserById(1L);
+        if(code.isSuccess()){
+            UserVO userVO =  code.getRetval();
+            System.out.println(userVO.getId()+";"+userVO.getNickName());
+        }else{
+            System.out.println(code.getMsg());
+        }
+        //UserVO userVO = service.getUserById(1L);
+        //System.out.println(userVO.getId()+";"+userVO.getNickName());
 //        ExtensionLoader
 //        AbstractConfig
     }

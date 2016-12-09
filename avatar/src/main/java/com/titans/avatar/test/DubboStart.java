@@ -4,6 +4,7 @@ import com.alibaba.dubbo.config.ApplicationConfig;
 import com.alibaba.dubbo.config.ProtocolConfig;
 import com.alibaba.dubbo.config.RegistryConfig;
 import com.alibaba.dubbo.config.ServiceConfig;
+import com.alibaba.dubbo.rpc.protocol.ProtocolFilterWrapper;
 import com.titans.avatar.api.service.UserService;
 import com.titans.avatar.service.UserServiceImpl;
 
@@ -16,6 +17,7 @@ import java.io.IOException;
  */
 public class DubboStart {
     public static void main(String[] args) {
+//        ProtocolFilterWrapper
         ApplicationConfig config = new ApplicationConfig();
         config.setName("dubbo-demo-server");
 
@@ -45,9 +47,15 @@ public class DubboStart {
         ctx.start();*/
 
         //避免主线程退出,任意键退出
-        try {
+       /* try {
             System.in.read();
         } catch (IOException e) {
+            e.printStackTrace();
+        }*/
+
+        try {
+            DubboStart.class.wait();
+        } catch (InterruptedException e) {
             e.printStackTrace();
         }
     }

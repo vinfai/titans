@@ -1,6 +1,7 @@
 package com.titans.avatar.api.service;
 
 
+import com.titans.api.vo.ResultCode;
 import com.titans.avatar.api.vo.UserVO;
 
 /**
@@ -11,5 +12,5 @@ import com.titans.avatar.api.vo.UserVO;
  */
 public interface UserService {
 
-    UserVO getUserById(Long userid);
+    ResultCode<UserVO> getUserById(Long userid);
 }

@@ -12,4 +12,10 @@
     <artifactId>titans-commons</artifactId>
     <description>collection common utils</description>
 
+    <dependencies>
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>dubbo</artifactId>
+        </dependency>
+    </dependencies>
 </project>

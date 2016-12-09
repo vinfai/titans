@@ -12,7 +12,7 @@
 
     <bean id="userService" class="com.titans.avatar.service.UserServiceImpl"/>
     
-    <dubbo:service interface="com.titans.avatar.api.service.UserService" ref="userService" timeout="2000" protocol="dubbo" version="0.1.0"/>
+    <dubbo:service interface="com.titans.avatar.api.service.UserService" filter="CheckAuthFilter" ref="userService" timeout="2000" protocol="dubbo" version="0.1.0"/>
 
 
 </beans>

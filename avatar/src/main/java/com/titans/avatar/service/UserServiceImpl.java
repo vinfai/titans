@@ -1,5 +1,6 @@
 package com.titans.avatar.service;
 
+import com.titans.api.vo.ResultCode;
 import com.titans.avatar.api.service.UserService;
 import com.titans.avatar.api.vo.UserVO;
 
@@ -11,11 +12,11 @@ import com.titans.avatar.api.vo.UserVO;
 public class UserServiceImpl implements UserService{
 
     //only for test
-    public UserVO getUserById(Long userid) {
+    public ResultCode<UserVO> getUserById(Long userid) {
         UserVO user = new UserVO();
         user.setId(userid);
         user.setNickName(userid+"@wap");
         System.out.println("invoked.....");
-        return user;
+        return ResultCode.getSuccessReturn(user);
     }
 }

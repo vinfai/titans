@@ -2,6 +2,7 @@ package com.titans.ticket.test.dubbo;
 
 import com.alibaba.dubbo.config.AbstractConfig;
 import com.alibaba.dubbo.rpc.cluster.configurator.AbstractConfigurator;
+import com.titans.api.vo.ResultCode;
 import com.titans.avatar.api.service.UserService;
 import com.titans.avatar.api.vo.UserVO;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -15,7 +16,13 @@ public class DubboTest2 {
     public static void main(String[] args) {
         ClassPathXmlApplicationContext ctx = new ClassPathXmlApplicationContext("spring/appcontext-dubbo.xml");
         UserService userService = (UserService)ctx.getBean("userService");
-        UserVO vo = userService.getUserById(2L);
-        System.out.println(vo.getId()+vo.getNickName());
+        ResultCode<UserVO> code = userService.getUserById(2L);
+        if(code.isSuccess()){
+            UserVO vo = code.getRetval();
+            System.out.println(vo.getId()+vo.getNickName());
+        }else{
+            System.out.println(code.getMsg());
+        }
+
     }
 }

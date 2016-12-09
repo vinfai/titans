@@ -11,5 +11,12 @@
 
     <artifactId>avatar-api</artifactId>
 
+    <dependencies>
+        <dependency>
+            <groupId>swallow</groupId>
+            <artifactId>titans-commons</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+    </dependencies>
 
 </project>
