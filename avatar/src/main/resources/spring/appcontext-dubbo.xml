@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://code.alibabatech.com/schema/dubbo        http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+<!-- dubbo interface -->
+    <!-- 提供方应用信息，用于计算依赖关系 -->
+    <dubbo:application name="demo-provider"/>
+    <!-- 注册与发现 参数要配置文件化-->
+    <dubbo:registry protocol="zookeeper" address="192.168.8.107:2181,192.168.8.108:2181,192.168.8.109:2181"/>
+
+    <bean id="userService" class="com.titans.avatar.service.UserServiceImpl"/>
+    
+    <dubbo:service interface="com.titans.avatar.api.service.UserService" filter="CheckAuthFilter" ref="userService" timeout="2000" protocol="dubbo" version="0.1.0"/>
+
+
+</beans>
