@@ -52,6 +52,7 @@ public class MultiServlet extends HttpServlet /*implements SingleThreadModel*/{
         //resp.getWriter().flush();
         //1.启动异步
         AsyncContext asyncContext = req.startAsync();
+//        asyncContext.getRequest().getAttribute("")
         //2.添加异步监听、设置请求超时时间
         asyncContext.addListener(new MyAsyncListener());
         asyncContext.setTimeout(10*1000);//可以设置超时测试 timeout<thread execute time.

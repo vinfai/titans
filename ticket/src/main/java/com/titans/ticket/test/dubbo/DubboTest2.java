@@ -19,9 +19,9 @@ public class DubboTest2 {
         ResultCode<UserVO> code = userService.getUserById(2L);
         if(code.isSuccess()){
             UserVO vo = code.getRetval();
-            System.out.println(vo.getId()+vo.getNickName());
+//            System.out.println(vo.getNickName());
         }else{
-            System.out.println(code.getMsg());
+//            System.out.println(code.getMsg());
         }
 
     }
