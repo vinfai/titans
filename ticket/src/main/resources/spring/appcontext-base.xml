@@ -7,9 +7,9 @@
             	http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task.xsd
             http://www.springframework.org/schema/context
 			http://www.springframework.org/schema/context/spring-context-4.0.xsd">
-    <!--annotation 需要扫描的范围
-    <context:component-scan base-package="com.titans.ticket.web.action" />
-    -->
+    <!--annotation 需要扫描的范围-->
+    <context:component-scan base-package="com.titans.ticket.test,com.titans.ticket.service" />
+
     <!--schedule 任务-->
     <task:annotation-driven/>
 

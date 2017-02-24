@@ -59,5 +59,11 @@ public class AsynchTask {
         this.taskUKey = taskUKey;
     }
 
+    public long getAddtime() {
+        return addtime;
+    }
 
+    public void setAddtime(long addtime) {
+        this.addtime = addtime;
+    }
 }

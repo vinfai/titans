@@ -41,6 +41,11 @@ public class AsynchTaskServiceImpl implements AsynchTaskService,InitializingBean
         this.maxnumPoolSize = maxnumPoolSize;
     }
 
+    public AsynchTaskServiceImpl() {
+        logger.info("AsynchTaskServiceImpl.............");
+        System.out.println("AsynchTaskServiceImpl322222222222");
+    }
+
     @Override
     public void addTask(AsynchTask task) {
         if(!task.isTimeout()){
@@ -48,6 +53,7 @@ public class AsynchTaskServiceImpl implements AsynchTaskService,InitializingBean
             AsynchTaskProcessor processor = processorMap.get(task.getTasktype());
             TaskWorkThread taskWorkThread = new TaskWorkThread(task, processor);
             executor.execute(taskWorkThread);
+            logger.info("executor inited."+executor.getCorePoolSize());
 
         }
     }
@@ -94,7 +100,7 @@ public class AsynchTaskServiceImpl implements AsynchTaskService,InitializingBean
         //Initializes the thread pool
         BlockingQueue queue = new LinkedBlockingQueue(100);
         executor = new ThreadPoolExecutor(maxnumPoolSize, maxnumPoolSize, 60, TimeUnit.SECONDS, queue);
-
+        System.out.println("executor....");
     }
 
     class TaskWorkThread implements Runnable{
@@ -116,7 +122,7 @@ public class AsynchTaskServiceImpl implements AsynchTaskService,InitializingBean
                 e.printStackTrace();
             } finally {
                 //完成统计
-                int count = completeCountMap.get(asynchTask).incrementAndGet();
+                int count = completeCountMap.get(asynchTask.getTasktype()).incrementAndGet();
                 if(count%100==0){
                     //TODO addMonitor
                     logger.warn("complete count :" + count);
