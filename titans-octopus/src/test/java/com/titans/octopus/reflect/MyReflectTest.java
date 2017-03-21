@@ -1,5 +1,7 @@
 package com.titans.octopus.reflect;
 
+import com.google.common.reflect.Reflection;
+
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
@@ -54,6 +56,7 @@ public class MyReflectTest {
         nameFiled.set(ins2, "swallow");
         ins2.sayHello("hello");
 
+        Reflection.initialize();
 
     }
 }

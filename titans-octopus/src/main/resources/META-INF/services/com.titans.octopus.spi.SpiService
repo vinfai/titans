@@ -1,2 +1,2 @@
-com.titans.octopus.spi.HumanSpiService
+com.titans.octopus.spi.HumanSpiServiceImpl
 com.titans.octopus.spi.TitanSpiServiceImpl

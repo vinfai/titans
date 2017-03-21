@@ -9,7 +9,7 @@
     <artifactId>weblab</artifactId>
     <packaging>war</packaging>
     <name>titans-weblab</name>
-    <description>web 实验室</description>
+    <description>web lab</description>
     <url>http://maven.apache.org</url>
     <dependencies>
         <dependency>
