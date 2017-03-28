@@ -12,6 +12,8 @@
         <module>avatar</module>
         <module>avatar-api</module>
         <module>ticket</module>
+        <module>titans-cache</module>
+        <module>titans-zookeeper</module>
     </modules>
     <packaging>pom</packaging>
 

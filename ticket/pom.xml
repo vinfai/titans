@@ -10,7 +10,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>ticket</artifactId>
-
+    <packaging>war</packaging>
     <dependencies>
         <!-- spring -->
         <dependency>
@@ -65,6 +65,11 @@
         <dependency>
             <groupId>swallow</groupId>
             <artifactId>avatar-api</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>swallow</groupId>
+            <artifactId>titans-commons</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
     </dependencies>

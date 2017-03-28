@@ -8,6 +8,8 @@ import com.titans.api.vo.ResultCode;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.ArrayList;
+
 /**
  * client filter
  * 调用结果统一封装ResultCode.
@@ -24,7 +26,6 @@ public class ResultCodeTransfromFilter extends GenericFilter {
     @Override
     public Result invoke(Invoker<?> invoker, Invocation inv) throws RpcException {
         //TODO 统计调用情况
-
         Result result = null;
         try {
             result = super.invoke(invoker, inv);

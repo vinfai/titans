@@ -7,7 +7,7 @@
 			http://www.springframework.org/schema/context/spring-context-4.0.xsd">
     <!--springMVC相关配置-->
     <!-- component scan springMVC action-->
-    <context:component-scan base-package="com.titans.web.action" />
+    <context:component-scan base-package="com.titans.ticket.web.action" />
 
     <!-- spring handler、mapping 配置-->
     <bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter">
