@@ -2,11 +2,8 @@ package com.titans.zk.examples;
 
 import org.apache.curator.framework.CuratorFramework;
 import org.apache.curator.framework.CuratorFrameworkFactory;
-import org.apache.curator.framework.recipes.cache.NodeCache;
-import org.apache.curator.framework.recipes.cache.NodeCacheListener;
 import org.apache.curator.retry.RetryNTimes;
 import org.apache.zookeeper.CreateMode;
-import org.apache.zookeeper.data.Stat;
 
 /**
  * @author vinfai
@@ -63,6 +60,15 @@ public class DataWatchListenerTest {
         client.setData().forPath(path, "v8".getBytes(encoding));
         client.setData().forPath(path, "v9".getBytes(encoding));
         Thread.sleep(10000);
-
+//        LeaderSelector
+        /** 结果：有序的变化
+         * data change now.voice --> v3
+         data change now.v3 --> v4
+         data change now.v4 --> v5
+         data change now.v5 --> v6
+         data change now.v6 --> v7
+         data change now.v7 --> v8
+         data change now.v8 --> v9
+         */
     }
 }
