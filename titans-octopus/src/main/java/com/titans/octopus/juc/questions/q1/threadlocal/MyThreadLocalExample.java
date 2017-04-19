@@ -31,6 +31,7 @@ public class MyThreadLocalExample {
             //System.out.println(Thread.currentThread().getName()+"-->"+myThreadLocalExample.threadInfo2.get());
         });
 
+        executorService.shutdownNow();
        /* executorService.execute(()->{
 
             myThreadLocalExample.threadInfo.set(Thread.currentThread().getName()+"hello2222");
