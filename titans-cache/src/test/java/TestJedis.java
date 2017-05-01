@@ -3,9 +3,8 @@ import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import redis.clients.jedis.Jedis;
-import redis.clients.jedis.JedisPool;
-import redis.clients.jedis.JedisPoolConfig;
+import redis.clients.jedis.*;
+import redis.clients.util.JedisClusterCRC16;
 
 import java.util.HashMap;
 import java.util.List;
@@ -80,11 +79,83 @@ public class TestJedis {
             for(String  key : hkeys){
                 System.out.println(key);
             }
+            //test clear
+            //Long del = jedis.del("lock:001");
+            String str = jedis.get("lock:001");
+            System.out.println("get lock str:"+str);
+            Long status = jedis.setnx("lock:001", "lock11");
+            if (status > 0) {
+                System.out.println("获得锁成功");
+               // jedis.del("lock:001");
+            }else{
+                System.out.println(status+" 获得锁失败");
+            }
+
         }finally {
             jedis.close();
         }
     }
 
+    @Test
+    public void testPipeline() {
+        Jedis jedis = pool.getResource();
+        Long st = System.currentTimeMillis();
+        Pipeline pipeline = jedis.pipelined();
+        for (int i = 0; i < 10000; i++) {
+            pipeline.set("key_" + i, "val_" + i);
+        }
+        pipeline.sync();
+        Long et = System.currentTimeMillis();
+        System.out.println("pipeline used time:" + (et - st));
+        Long st2 = System.currentTimeMillis();
+        for (int i = 0; i < 10000; i++) {
+            jedis.set("key:" + i, "val:" + i);
+        }
+        Long et2 = System.currentTimeMillis();
+        System.out.println("single operation used time:" + (et2 - st2));
+        //相差100倍的效率.
+
+        Long st3 = System.currentTimeMillis();
+        Pipeline pipelined2 = jedis.pipelined();
+        for (int i = 0; i < 10000; i++) {
+            Response<String> stringResponse = pipelined2.get("key:" + i);
+        }
+        pipelined2.sync();
+        Long et3 = System.currentTimeMillis();
+        System.out.println("query by pipeline used time:" + (et3 - st3));
+        Long st4 = System.currentTimeMillis();
+        for (int i = 0; i < 10000; i++) {
+            String s = jedis.get("key:" + i);
+        }
+        Long et4 = System.currentTimeMillis();
+        System.out.println("query by jedis used time:" + (et4 - st4));
+
+        jedis.close();
+        /*
+         * pipeline used time:124
+         single operation used time:4268
+         query by pipeline used time:27
+         query by jedis used time:4074
+         */
+    }
+
+    @Test
+    public void testSetOpt() {
+        Jedis jedis = pool.getResource();
+        jedis.sadd("setA", "a", "b", "c", "1", "2", "3");
+        jedis.sadd("setB", "a", "c", "1", "4", "5");
+        Set<String> inAnotBSet = jedis.sdiff("setA", "setB");
+        //预期结果: b,2,3
+        for (String s : inAnotBSet) {
+            System.out.println(s);
+        }
+        System.out.println("-------------------------");
+        Set<String> inBnotASet = jedis.sdiff("setB", "setA");
+        //预期结果: 4,5
+        for (String s : inBnotASet) {
+            System.out.println(s);
+        }        jedis.close();
+    }
 
     @After
     public void tearDown() {
