@@ -2,6 +2,7 @@ package com.titans.octopus.juc.questions.q1.threadlocal;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.concurrent.locks.ReentrantLock;
 
 /**
  * ThreadLocal：提供了线程局部变量。访问该变量的每个线程都有之间的局部变量（都有之间的值，线程隔离），独立于线程初始化的副本。<br/>
@@ -31,6 +32,7 @@ public class MyThreadLocalExample {
             //System.out.println(Thread.currentThread().getName()+"-->"+myThreadLocalExample.threadInfo2.get());
         });
 
+        executorService.shutdownNow();
        /* executorService.execute(()->{
 
             myThreadLocalExample.threadInfo.set(Thread.currentThread().getName()+"hello2222");

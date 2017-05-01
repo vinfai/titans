@@ -1,7 +1,5 @@
 package com.titans.octopus.collection;
 
-import java.util.HashMap;
-
 /**
  * @author vinfai
  * @since 2017/3/17
@@ -9,6 +7,12 @@ import java.util.HashMap;
 public class HashMapTest {
 
     public static void main(String[] args) {
-        HashMap
+        String a = "1";
+        a = "2";
+        System.out.println(a);
+        Thread.interrupted();
+
+//        NoClassDefFoundError
+//        ClassNotFoundException
     }
 }

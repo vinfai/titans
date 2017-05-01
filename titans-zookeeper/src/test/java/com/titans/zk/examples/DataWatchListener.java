@@ -60,7 +60,7 @@ public class DataWatchListener implements NodeCacheListener{
     @Override
     public void nodeChanged() throws Exception {
         String oldData = preData;
-        String preData = getData();//更新后的数据
+        preData = getData();//更新后的数据
         //TODO 数据并更了，可以做一些动作，如传入Json{action：'del',id:"1"}
         System.out.println("data change now."+oldData+" --> "+ preData);
 
