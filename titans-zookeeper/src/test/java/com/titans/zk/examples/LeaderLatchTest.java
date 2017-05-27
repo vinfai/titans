@@ -25,6 +25,7 @@ public class LeaderLatchTest {
         List<LeaderLatch> examples = Lists.newArrayList();
 //        TestingServer server = new TestingServer();
 
+
         //3个client去连接
         for (int i = 0; i < 8; i++) {
             CuratorFramework client = CuratorFrameworkFactory.builder().connectString(connectString).retryPolicy(new RetryNTimes(10, 1000)).build();

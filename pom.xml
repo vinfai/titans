@@ -14,6 +14,7 @@
         <module>ticket</module>
         <module>titans-cache</module>
         <module>titans-zookeeper</module>
+        <module>titans-mq</module>
     </modules>
     <packaging>pom</packaging>
 
@@ -37,6 +38,7 @@
         <!-- Log libs -->
         <slf4j.version>1.6.4</slf4j.version><!-- 1.7.9 -->
         <log4j.version>1.2.16</log4j.version><!-- 1.2.17 -->
+        <activemq.version>5.11.1</activemq.version>
     </properties>
 
     <dependencyManagement>
@@ -194,6 +196,21 @@
                 <artifactId>junit</artifactId>
                 <version>3.8.1</version>
                 <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.activemq</groupId>
+                <artifactId>activemq-broker</artifactId>
+                <version>${activemq.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.activemq</groupId>
+                <artifactId>activemq-client</artifactId>
+                <version>${activemq.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.activemq</groupId>
+                <artifactId>activemq-pool</artifactId>
+                <version>${activemq.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
