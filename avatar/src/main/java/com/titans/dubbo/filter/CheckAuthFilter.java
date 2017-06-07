@@ -21,6 +21,8 @@ public class CheckAuthFilter extends GenericFilter{
     private static List<String> officeIps = new ArrayList<>();
     static{
         officeIps.add("192.168.8.152");
+        officeIps.add("169.254.7.91");
+
     }
     @Override
     public Result invoke(Invoker<?> invoker, Invocation inv) throws RpcException {
@@ -29,7 +31,7 @@ public class CheckAuthFilter extends GenericFilter{
         logger.info("client ip :{}", clientIp);
         if(!officeIps.contains(clientIp)){
             logger.warn("authority refused");
-            return new RpcResult(ResultCode.getFailure("不在白名单中，没有权限!"));
+            return new RpcResult(ResultCode.getFailure("不在白名单中，没有权限!!"+clientIp));
         }
         return super.invoke(invoker, inv);
     }

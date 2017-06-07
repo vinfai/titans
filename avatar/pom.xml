@@ -25,15 +25,15 @@
         <groupId>swallow</groupId>
         <version>1.0-SNAPSHOT</version>
     </parent>
-
     <modelVersion>4.0.0</modelVersion>
+    <artifactId>avatar</artifactId>
+    <name>titans-avatar</name>
     <packaging>war</packaging>
 
-    <name>avatar</name>
-    <artifactId>avatar</artifactId>
-
     <build>
-        <plugins>
+        <!-- 编译出的文件名称 不写默认avatar-1.0.xxxx-->
+        <finalName>avatar</finalName>
+        <!--<plugins>
             <plugin>
                 <groupId>org.mortbay.jetty</groupId>
                 <artifactId>maven-jetty-plugin</artifactId>
@@ -50,7 +50,7 @@
                     <contextPath>/</contextPath>
                 </configuration>
             </plugin>
-        </plugins>
+        </plugins>-->
     </build>
 
     <dependencies>
@@ -94,6 +94,11 @@
         <dependency>
             <groupId>com.alibaba</groupId>
             <artifactId>dubbo</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.caucho</groupId>
+            <artifactId>hessian</artifactId>
+            <version>4.0.38</version>
         </dependency>
         <dependency>
             <groupId>org.apache.zookeeper</groupId>
