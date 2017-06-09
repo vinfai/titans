@@ -3,7 +3,6 @@ package com.titans.guava.ratelimter;
 import com.google.common.util.concurrent.RateLimiter;
 
 import java.time.LocalDateTime;
-import java.util.concurrent.TimeUnit;
 
 /**
  * @author vinfai
@@ -12,10 +11,10 @@ import java.util.concurrent.TimeUnit;
 public class RateLimiterDemo {
 
     public static void main(String[] args) {
-        RateLimiter rateLimiter = RateLimiter.create(10);
+        RateLimiter rateLimiter = RateLimiter.create(0.5);
         while (true) {
-            rateLimiter.acquire();
-            System.out.println(LocalDateTime.now()+";rate:"+rateLimiter.getRate());
+
+            System.out.println(LocalDateTime.now()+";rate:"+rateLimiter.getRate()+";"+ rateLimiter.acquire());
         }
     }
 }
