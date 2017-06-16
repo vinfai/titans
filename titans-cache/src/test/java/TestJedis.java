@@ -1,4 +1,6 @@
+import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
+import com.google.common.io.Files;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
@@ -6,6 +8,9 @@ import org.junit.Test;
 import redis.clients.jedis.*;
 import redis.clients.util.JedisClusterCRC16;
 
+import java.io.File;
+import java.io.IOException;
+import java.nio.charset.Charset;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -30,7 +35,8 @@ public class TestJedis {
     private JedisPool pool = null;
     @Before
     public void setUp(){
-        pool = new JedisPool(new JedisPoolConfig(),"192.168.248.128");
+//        pool = new JedisPool(new JedisPoolConfig(),"192.168.248.128");
+        pool = new JedisPool("192.168.2.250",36379);
     }
     @Test
     public void testString() {
@@ -79,11 +85,19 @@ public class TestJedis {
             for(String  key : hkeys){
                 System.out.println(key);
             }
+
+            //
+            jedis.lpush("mylist", "1", "2", "3");
+            for (int i = 0; i < 3; i++) {
+                System.out.println( jedis.rpop("mylist"));
+            }
             //test clear
             //Long del = jedis.del("lock:001");
             String str = jedis.get("lock:001");
             System.out.println("get lock str:"+str);
+
             Long status = jedis.setnx("lock:001", "lock11");
+            jedis.expire("lock:001", 10);
             if (status > 0) {
                 System.out.println("获得锁成功");
                // jedis.del("lock:001");
@@ -155,6 +169,18 @@ public class TestJedis {
         for (String s : inBnotASet) {
             System.out.println(s);
         }        jedis.close();
+    }
+
+    @Test
+    public void test1() throws IOException {
+        String path = "F:\\washome\\gitworkspace\\titans\\titans-cache\\src\\main\\resources\\scripts\\limit.lua";
+
+        String luaScript = Files.toString(new File(path), Charset.defaultCharset());
+        String key = "ip12341";
+        Jedis jedis = pool.getResource();
+        Long i = (Long)jedis.eval(luaScript, Lists.newArrayList(key), Lists.newArrayList("5"));
+        System.out.println(i);
+        jedis.close();
     }
 
     @After
