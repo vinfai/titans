@@ -15,6 +15,7 @@
         <module>titans-cache</module>
         <module>titans-zookeeper</module>
         <module>titans-mq</module>
+        <module>titans-security</module>
     </modules>
     <packaging>pom</packaging>
 
