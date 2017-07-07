@@ -16,6 +16,7 @@
         <module>titans-zookeeper</module>
         <module>titans-mq</module>
         <module>titans-security</module>
+        <module>titans-pay</module>
     </modules>
     <packaging>pom</packaging>
 
@@ -40,6 +41,7 @@
         <slf4j.version>1.6.4</slf4j.version><!-- 1.7.9 -->
         <log4j.version>1.2.16</log4j.version><!-- 1.2.17 -->
         <activemq.version>5.11.1</activemq.version>
+        <swagger.version>2.6.1</swagger.version>
     </properties>
 
     <dependencyManagement>
@@ -161,13 +163,25 @@
                     </exclusion>
                 </exclusions>
             </dependency>
-            <!-- log -->
+            <!--swagger-->
+            <dependency>
+                <groupId>io.springfox</groupId>
+                <artifactId>springfox-swagger2</artifactId>
+                <version>${swagger.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.springfox</groupId>
+                <artifactId>springfox-swagger-ui</artifactId>
+                <version>${swagger.version}</version>
+            </dependency>
+            <!-- log
             <dependency>
                 <groupId>log4j</groupId>
                 <artifactId>log4j</artifactId>
                 <version>${log4j.version}</version>
                 <scope>compile</scope>
             </dependency>
+            -->
             <dependency>
                 <groupId>org.slf4j</groupId>
                 <artifactId>slf4j-api</artifactId>
@@ -181,11 +195,22 @@
                 <scope>compile</scope>
             </dependency>
             <dependency>
+                <groupId>ch.qos.logback</groupId>
+                <artifactId>logback-core</artifactId>
+                <version>1.1.2</version>
+            </dependency>
+            <dependency>
+                <groupId>ch.qos.logback</groupId>
+                <artifactId>logback-classic</artifactId>
+                <version>1.1.2</version>
+            </dependency>
+
+            <!--<dependency>
                 <groupId>org.slf4j</groupId>
                 <artifactId>slf4j-log4j12</artifactId>
                 <version>${slf4j.version}</version>
                 <scope>compile</scope>
-            </dependency>
+            </dependency>-->
             <!--zookeeper 依赖-->
             <dependency>
                 <groupId>com.github.sgroschupf</groupId>
@@ -221,10 +246,10 @@
         </dependencies>
     </dependencyManagement>
     <dependencies>
-        <dependency>
+       <!-- <dependency>
             <groupId>log4j</groupId>
             <artifactId>log4j</artifactId>
-        </dependency>
+        </dependency>-->
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>
@@ -233,9 +258,17 @@
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-ext</artifactId>
         </dependency>
-        <dependency>
+        <!--<dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-log4j12</artifactId>
+        </dependency>-->
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-core</artifactId>
         </dependency>
     </dependencies>
 

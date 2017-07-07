@@ -5,4 +5,5 @@ package com.titans.untrans;
  * @since 2017/6/21
  */
 public class CaptchaService {
+
 }

@@ -57,6 +57,11 @@
     <servlet-mapping>
         <servlet-name>action</servlet-name>
         <url-pattern>*.xhtml</url-pattern>
+
+        <url-pattern>/swagger-resources</url-pattern>
+        <url-pattern>/swagger-resources/configuration/ui</url-pattern>
+        <url-pattern>/swagger-resources/configuration/security</url-pattern>
+        <url-pattern>/v2/api-docs</url-pattern><!---->
     </servlet-mapping>
 
     <!--<error-page>

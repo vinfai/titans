@@ -3,14 +3,11 @@ package com.titans.captcha;
 import org.patchca.color.SingleColorFactory;
 import org.patchca.filter.predefined.CurvesRippleFilterFactory;
 import org.patchca.filter.predefined.DoubleRippleFilterFactory;
-import org.patchca.font.FontFactory;
 import org.patchca.font.RandomFontFactory;
-import org.patchca.service.Captcha;
 import org.patchca.service.ConfigurableCaptchaService;
 import org.patchca.text.renderer.RandomYBestFitTextRenderer;
 import org.patchca.utils.encoder.EncoderHelper;
 import org.patchca.word.RandomWordFactory;
-import org.patchca.word.WordFactory;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
