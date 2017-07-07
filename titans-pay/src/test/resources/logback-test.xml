@@ -68,6 +68,27 @@
         </encoder>
     </appender>
 
+    <appender name="WARN" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <append>true</append>
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <level>WARN</level>
+            <onMatch>ACCEPT</onMatch>
+            <onMismatch>DENY</onMismatch>
+        </filter>
+        <file>${LoggingDir}warn.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${LoggingHistoryDir}%d{yyyy-MM-dd}_info.zip</fileNamePattern>
+            <maxHistory>${maxhistory}</maxHistory>
+        </rollingPolicy>
+        <encoder>
+            <pattern>${MESSAGE_FILE_PATTERN}
+            </pattern>
+        </encoder>
+    </appender>
+    <appender name="ASYNC_WARN" class="ch.qos.logback.classic.AsyncAppender">
+        <appender-ref ref="WARN"/>
+    </appender>
+
     <appender name="ASYNC_STDOUT1" class="ch.qos.logback.classic.AsyncAppender">
         <appender-ref ref="STDOUT1"/>
     </appender>
@@ -127,5 +148,6 @@
         <appender-ref ref="ASYNC_INFO"/>
         <appender-ref ref="ASYNC_ERROR"/>
         <appender-ref ref="ASYNC_DEBUG"/>
+        <appender-ref ref="ASYNC_WARN"/>
     </root>
 </configuration>
