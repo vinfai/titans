@@ -9,16 +9,16 @@ import net.sf.cglib.proxy.Enhancer;
 public class CgLibProxyTest {
 
     public static void main(String[] args) {
-       /* HelloService helloService = new HelloServiceImpl();
+        HelloServiceImpl helloService = new HelloServiceImpl();
         TraceInterceptor interceptor = new TraceInterceptor(helloService);
-        HelloService o = (HelloService)Enhancer.create(HelloService.class, interceptor);
+        HelloService o = (HelloService)Enhancer.create(HelloServiceImpl.class, interceptor);
         System.out.println(o.getClass().getName());
-        o.sayHello("nihao");*/
-        Hello2Service helloService = new Hello2Service();
+        o.sayHello("nihao");
+        /*Hello2Service helloService = new Hello2Service();
         TraceInterceptor interceptor = new TraceInterceptor(helloService);
         Hello2Service o = (Hello2Service)Enhancer.create(Hello2Service.class, interceptor);
         System.out.println(o.getClass().getName());
-        o.sayHello("nihao");
+        o.sayHello("nihao");*/
 
     }
 }

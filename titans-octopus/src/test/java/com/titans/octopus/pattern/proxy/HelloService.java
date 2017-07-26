@@ -5,4 +5,5 @@ package com.titans.octopus.pattern.proxy;
  */
 public interface HelloService {
     void sayHello(String name);
+
 }
