@@ -6,6 +6,7 @@ import com.dangdang.ddframe.rdb.sharding.api.rule.ShardingRule;
 import com.dangdang.ddframe.rdb.sharding.api.rule.TableRule;
 import com.dangdang.ddframe.rdb.sharding.api.strategy.table.TableShardingStrategy;
 import com.dangdang.ddframe.rdb.sharding.jdbc.core.datasource.ShardingDataSource;
+import com.dangdang.ddframe.rdb.sharding.spring.datasource.SpringShardingDataSource;
 import org.apache.commons.dbcp.BasicDataSource;
 
 import javax.sql.DataSource;
@@ -33,6 +34,7 @@ public class SharedingJdbcTest {
                 e.printStackTrace();
             }
         }*/
+//        SpringShardingDataSource
 
        printGroupBy(dataSource);
 

@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.titans.model.Order" table="t_order" lazy="false">
+		<id name="orderId" type="java.lang.Long" column="order_id">
+        	<generator class="identity"/>
+		</id>
+        <property name="userId" type="java.lang.Integer">
+            <column name="user_id" not-null="true"/>
+        </property>
+        <property name="status" type="string">
+            <column name="status" not-null="true"/>
+        </property>
+	</class>
+</hibernate-mapping>
