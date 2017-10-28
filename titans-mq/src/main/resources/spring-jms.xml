@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd">
+
+    <context:annotation-config/>
+    <context:component-scan base-package="com.titans.mq.activemq.spring.service"/>
+
+    <bean id="connectionFactory" class="org.apache.activemq.ActiveMQConnectionFactory">
+        <property name="clientIDPrefix" value="test"/>
+        <property name="connectionIDPrefix" value="cprefix"/>
+        <property name="sendTimeout" value="10000"/><!-- 10s-->
+        <property name="brokerURL" value="failover:(tcp://192.168.8.109:9521,tcp://192.168.2.190:9521)?randomize=false"/>
+    </bean>
+    <bean id="jmsFactory" class="org.apache.activemq.pool.PooledConnectionFactory" destroy-method="stop">
+        <property name="connectionFactory" ref="connectionFactory"/>
+
+    </bean>
+
+    <bean id="defaultDestination" class="org.apache.activemq.command.ActiveMQQueue">
+        <constructor-arg value="defaultMsgQueue"/>
+    </bean>
+    <bean id="jmsTemplate" class="org.springframework.jms.core.JmsTemplate">
+        <property name="connectionFactory" ref="jmsFactory"/>
+        <property name="defaultDestination" ref="defaultDestination"/>
+        <property name="receiveTimeout" value="20000"/>
+    </bean>
+</beans>

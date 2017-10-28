@@ -9,7 +9,8 @@
 			http://www.springframework.org/schema/context/spring-context-4.0.xsd">
     <!--annotation 需要扫描的范围 -->
     <!--这里错误配置action了-->
-    <context:component-scan base-package="com.titans.web.action" />
+    <context:component-scan base-package="com.titans.service" />
+    <context:component-scan base-package="com.titans.untrans.config"/>
     <!--schedule 任务-->
     <task:annotation-driven/>
 </beans>

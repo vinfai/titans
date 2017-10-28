@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+		http://www.springframework.org/schema/context/spring-context-4.0.xsd">
+
+    <context:component-scan base-package="com.titans.cache.redis,com.titans.redis" />
+    <context:property-placeholder location="classpath:appkey.properties"/>
+    <bean id="jedisConnectionFactory" class="org.springframework.data.redis.connection.jedis.JedisConnectionFactory"
+        p:usePool="true" p:hostName="${redis.host}" p:port="${redis.port}"/>
+
+    <bean id="redisTemplate" class="org.springframework.data.redis.core.RedisTemplate" p:connectionFactory-ref="jedisConnectionFactory"/>
+
+    <bean id="stringRedisTemplate" class="org.springframework.data.redis.core.StringRedisTemplate" p:connectionFactory-ref="jedisConnectionFactory"/>
+
+    <!-- 2种实现方式 -->
+    <bean id="changeMessageListener" class="com.titans.redis.pubsub.ChangeMessageListener"/>
+    <bean id="pointMessageListener" class="org.springframework.data.redis.listener.adapter.MessageListenerAdapter">
+        <constructor-arg index="0">
+            <bean class="com.titans.redis.pubsub.PointMessageDelegate"/>
+       </constructor-arg>
+        <constructor-arg index="1" value="receiveMessage"/> <!-- default:handleMessage method-->
+   </bean>
+    <!-- 发布与订阅 -->
+    <bean id="redisContainer" class="org.springframework.data.redis.listener.RedisMessageListenerContainer">
+        <property name="connectionFactory" ref="jedisConnectionFactory"/>
+        <property name="messageListeners">
+           <map>
+                <entry key-ref="changeMessageListener">
+                    <bean class="org.springframework.data.redis.listener.ChannelTopic">
+                        <constructor-arg value="changeTopic"/>
+                    </bean>
+                </entry>
+               <entry key-ref="pointMessageListener">
+                   <bean class="org.springframework.data.redis.listener.ChannelTopic">
+                       <constructor-arg value="point"/>
+                   </bean>
+               </entry>
+           </map>
+        </property>
+    </bean>
+
+</beans>
