@@ -64,8 +64,12 @@ class OrderCancelDelay implements Delayed{
 
     @Override
     public int compareTo(Delayed o) {
-        if(o==null||!(o instanceof OrderCancelDelay)) return 1;
-        if(o == this) return 0;
+        if(o==null||!(o instanceof OrderCancelDelay)){
+            return 1;
+        }
+        if(o == this){
+            return 0;
+        }
         OrderCancelDelay delay = (OrderCancelDelay)o;
         return this.delayTime-delay.getDelayTime()>0?1:-1;
     }

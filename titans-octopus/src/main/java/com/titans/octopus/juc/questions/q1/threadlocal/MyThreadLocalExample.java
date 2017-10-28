@@ -2,6 +2,7 @@ package com.titans.octopus.juc.questions.q1.threadlocal;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.locks.ReentrantLock;
 
 /**
@@ -31,7 +32,6 @@ public class MyThreadLocalExample {
             System.out.println(Thread.currentThread().getName()+"-->"+myThreadLocalExample.threadInfo.get());
             //System.out.println(Thread.currentThread().getName()+"-->"+myThreadLocalExample.threadInfo2.get());
         });
-
         executorService.shutdownNow();
        /* executorService.execute(()->{
 

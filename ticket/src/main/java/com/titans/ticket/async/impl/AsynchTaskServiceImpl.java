@@ -10,10 +10,7 @@ import org.springframework.beans.factory.InitializingBean;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.concurrent.BlockingQueue;
-import java.util.concurrent.LinkedBlockingQueue;
-import java.util.concurrent.ThreadPoolExecutor;
-import java.util.concurrent.TimeUnit;
+import java.util.concurrent.*;
 import java.util.concurrent.atomic.AtomicInteger;
 
 /**
@@ -99,7 +96,12 @@ public class AsynchTaskServiceImpl implements AsynchTaskService,InitializingBean
         //TODO 优化：线程池改为统一管理配置，包括修改参数、监控报警等
         //Initializes the thread pool
         BlockingQueue queue = new LinkedBlockingQueue(100);
-        executor = new ThreadPoolExecutor(maxnumPoolSize, maxnumPoolSize, 60, TimeUnit.SECONDS, queue);
+        executor = new ThreadPoolExecutor(maxnumPoolSize, maxnumPoolSize, 60, TimeUnit.SECONDS, queue, new ThreadFactory() {
+            @Override
+            public Thread newThread(Runnable r) {
+                return new Thread("");
+            }
+        });
         System.out.println("executor....");
     }
 

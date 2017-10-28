@@ -23,5 +23,10 @@ public class QueryOrderDetailProcessor implements AsynchTaskProcessor{
         }
         String orderno = (String) asynchTask.getInfo("tradeno");
         logger.warn("query order detial with orderno:"+orderno+";"+asynchTask.getAddtime());
+//        HandlerInterceptorAdapter
+//        BufferedReader
     }
+
+//    AbstractTraceInterceptor
 }
+

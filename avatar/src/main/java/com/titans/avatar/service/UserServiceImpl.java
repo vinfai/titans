@@ -12,6 +12,7 @@ import com.titans.avatar.api.vo.UserVO;
 public class UserServiceImpl implements UserService{
 
     //only for test
+    @Override
     public ResultCode<UserVO> getUserById(Long userid) {
         UserVO user = new UserVO();
         user.setId(userid);
