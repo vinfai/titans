@@ -17,6 +17,7 @@
         <module>titans-mq</module>
         <module>titans-security</module>
         <module>titans-pay</module>
+        <module>titans-python</module>
     </modules>
     <packaging>pom</packaging>
 
