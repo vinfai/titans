@@ -4,7 +4,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 
-/**
+/** http://blog.csdn.net/seu_calvin/article/details/52315125
  * @author vinfai
  * @since 2017-10-24
  */

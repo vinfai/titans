@@ -10,6 +10,10 @@ public class ClassLoaderTest {
 
     public static void main(String[] args) throws Exception{
         ClassLoader classLoader = ClassLoaderTest.class.getClassLoader();
+        System.out.println(Thread.currentThread().getContextClassLoader());
+        System.out.println(Thread.currentThread().getContextClassLoader().getParent());
+        System.out.println(Thread.currentThread().getContextClassLoader().getParent().getParent());
+
       /*  System.out.println(classLoader);
         System.out.println(ClassLoader.getSystemClassLoader());
         System.out.println(classLoader.getParent());
@@ -22,18 +26,20 @@ public class ClassLoaderTest {
         }*/
 //        Launcher.getLauncher()
 
-        test3();
+        test2();
+//        test3();
     }
 
     public static void test2() throws Exception{
         MyClassLoader loader = new MyClassLoader();
+        Class<?> aClass = Class.forName("com.titans.octopus.classloader.HighRichHandsome", false, loader);
         Class<?> c = loader.loadClass("com.titans.octopus.classloader.HighRichHandsome");
         System.out.println("loaded by " + c.getClassLoader());
-
-        Person p = (Person)c.newInstance();
+        System.out.println("loaded by " + aClass.getClassLoader());
+        Person p = (Person)aClass.newInstance();
         p.say();
 
-        HighRichHandsome highRichHandsome = (HighRichHandsome) c.newInstance();
+        HighRichHandsome highRichHandsome = (HighRichHandsome) aClass.newInstance();
         highRichHandsome.say();
     }
 
@@ -42,6 +48,9 @@ public class ClassLoaderTest {
         MyClassLoader loader = new MyClassLoader();
         Class<?> c = loader.findClass("com.titans.octopus.classloader.HighRichHandsome");
         System.out.println("loaded by " + c.getClassLoader());
+        System.out.println(Thread.currentThread().getContextClassLoader());
+        System.out.println(Thread.currentThread().getContextClassLoader().getParent());
+        System.out.println(Thread.currentThread().getContextClassLoader().getParent().getParent());
         //loaded by com.titans.octopus.classloader.MyClassLoader@61bbe9ba
         Person p = (Person)c.newInstance();
         p.say();
