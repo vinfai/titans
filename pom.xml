@@ -18,6 +18,7 @@
         <module>titans-security</module>
         <module>titans-pay</module>
         <module>titans-python</module>
+        <module>titans-netty</module>
     </modules>
     <packaging>pom</packaging>
 
